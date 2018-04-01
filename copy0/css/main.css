@@ -1,0 +1,241 @@
+* {
+  font-family: "Microsoft Yahei UI";
+  margin: 0;
+  padding: 0;
+  /* border: 0.02px dotted #777; */
+}
+body, body * {
+  box-sizing: border-box;
+}
+a, img {
+  display: block;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+a:visited {
+  color: #000;
+}
+
+.wrapper-center {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.wrapper-main {
+  width: 700px;
+  float: left;
+  padding-right: 5px;
+}
+.wrapper-side {
+  width: 300px;
+  float: right;
+  padding-left: 5px;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+/* Header part */
+
+/* Header1 */
+
+.header1 {
+  padding: 5px;
+  border: 1px solid #000;
+  display: none;
+}
+.header1 > *:not(:last-child) {
+  float: left;
+}
+.header1 > *:last-child {
+  float: right;
+}
+.header1 .logo h1 {
+  color: rgb(0, 132, 255);
+}
+.header1 .nav {
+  margin: 10px;
+}
+.header1 .nav > * {
+  float: left;
+}
+.header1 .nav a {
+  color: #888;
+  padding: 0 15px;
+}
+.header1 .nav a:hover {
+  color: #448;
+}
+/* .header1 .search {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #eee;
+} */
+.header1 .search input {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #eee;
+  /* border: 0; */
+  width: 300px;
+  /* background: none; */
+  transition: all 0.2s;
+}
+.header1 .search input:focus {
+  outline: none;
+  width: 380px;
+  background: #fff;
+  border: 1px solid #666;
+}
+.header1 .btns, .header2 .btns {
+  margin: 5px;
+  /* padding: 5px; */
+}
+.header1 .btns > *, .header2 .btns > * {
+  float: left;
+  margin: 0 10px;
+}
+.header1 .btns a, .header2 .btns a, .question-panel .btns .follow-question, .question-panel .btns .write-answer {
+  border: 1px solid rgb(0, 132, 255);
+  padding: 5px 15px;
+  border-radius: 3px;
+}
+.header1 .btns .login, .header2 .btns .write-answer, .question-panel .btns .write-answer {
+  color: rgb(0, 132, 255);
+}
+.header1 .btns .login:hover, .header2 .btns .write-answer:hover, .question-panel .btns .write-answer:hover {
+  background: rgba(0, 132, 255, 0.1);
+}
+.header1 .btns .signup, .header2 .btns .follow-question, .question-panel .btns .follow-question {
+  color: #fff;
+  background: rgb(0, 132, 255);
+}
+.header1 .btns .signup:hover, .header2 .btns .follow-question:hover, .question-panel .btns .follow-question:hover {
+  background: #07f;
+}
+
+/* Header1 ends */
+
+/* Header2 */
+
+.header2 {
+  padding: 10px 0;
+  border: 1px solid #000;
+}
+.header2 .question-title {
+  /* margin: 10px 0; */
+  float: left;
+}
+.header2 .btns {
+  float: right;
+  /* margin: 10px 0; */
+}
+
+/* Header2 ends */
+
+
+
+
+.question > * {
+  margin: 10px 0;
+}
+.question-tags li {
+  float: left;
+  padding: 0 5px;
+}
+.question-tags a {
+  padding: 5px 10px;
+  border: 1px solid rgb(0, 132, 255);
+  border-radius: 20px;
+}
+.question-panel .btns li {
+  float: left;
+  padding: 5px;
+}
+.question-panel .btns a {
+  padding: 5px;
+  color: #666;
+}
+
+
+.answer-panel {
+  padding: 10px;
+}
+.answer-panel-header .answer-number {
+  float: left;
+}
+.answer-panel-header .sorting {
+  float: right;
+}
+.answer .answerer-avatar {
+  float: left;
+  margin-right: 20px;
+}
+.answer .avatar-block {
+  width: 40px;
+  height: 40px;
+  background: #666;
+}
+.answer .answer-agrees, .answer .answer-time {
+  color: #999;
+  margin: 10px 0;
+}
+.answer .answer-body {
+  margin: 10px 0;
+}
+.answer .answer-btns {
+  margin: 10px 0;
+}
+.answer .answer-btns li {
+  float: left;
+}
+.answer .answer-btns a {
+  margin: 0 10px;
+  padding: 5px 10px;
+  color: #999;
+}
+.answer .answer-btns .upvote-btn a, .answer .answer-btns .downvote-btn a {
+  color: rgb(0, 132, 255);
+  border-radius: 5px;
+  background: rgba(0, 132, 255, 0.1);
+}
+
+.comment-panel {
+  border: 1px solid #999;
+  padding: 10px;
+}
+.comment-panel-header p {
+  float: left;
+}
+.comment-panel-header a {
+  float: right;
+}
+.comment-avatar {
+  float: left;
+}
+.comment-name, .comment-info {
+  margin-left : 40px;
+}
+.comment-btns li {
+  float: left;
+  padding: 0 10px;
+}
+.comment-btns a {
+  padding: 5px 15px;
+}
+.comment-time {
+  float: right;
+}
+.new-comment {
+  text-align: center;
+}

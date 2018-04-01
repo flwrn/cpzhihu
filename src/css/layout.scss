@@ -1,0 +1,30 @@
+$centerWidth: 1000px;
+$largerColWidth: 600px;
+$smallerColWidth: 300px;
+$mainBlue: #09f;
+$defaultFontSize: 16px;
+
+* {
+  // font-size: $defaultFontSize;
+}
+.center {
+  width: $centerWidth;
+  margin: 0 auto;
+}
+.col-l {
+  width: $largerColWidth;
+}
+.col-s {
+  width: $smallerColWidth;
+}
+.f-l {
+  float: left;
+}
+.f-r {
+  float: right;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
