@@ -23,9 +23,11 @@ export default {
 
 <style lang="scss" scoped>
   .sign-up-zhihu {
+    // box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 2px;
     margin: 10px;
+    // width: 100%;
     .slogan {
       height: 100px;
       padding-top: 30px;
@@ -58,7 +60,7 @@ export default {
         margin: 6px;
         border-radius: 2px;
         // border: 1px solid #07d;
-        box-shadow: 0 1px 5px #000;
+        box-shadow: 0 1px 1px #000;
       }
       a.login {
         display: inline;

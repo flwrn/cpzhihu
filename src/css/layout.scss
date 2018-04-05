@@ -1,6 +1,6 @@
 $centerWidth: 1000px;
 $largerColWidth: 600px;
-$smallerColWidth: 300px;
+$smallerColWidth: 400px;
 $mainBlue: #09f;
 $defaultFontSize: 16px;
 
@@ -8,14 +8,16 @@ $defaultFontSize: 16px;
   // font-size: $defaultFontSize;
 }
 .center {
-  width: $centerWidth;
+  max-width: $centerWidth;
   margin: 0 auto;
 }
 .col-l {
-  width: $largerColWidth;
+  max-width: 600px;
+  min-width: 300px;
 }
 .col-s {
-  width: $smallerColWidth;
+  max-width: 400px;
+  min-width: 300px;
 }
 .f-l {
   float: left;
