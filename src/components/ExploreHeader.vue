@@ -92,4 +92,19 @@ export default {
     }
   }
 
+  @media screen and (max-width: 1000px) {
+    .explore-header .nav {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .explore-header .search {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .explore-header .ask {
+      display: none;
+    }
+  }
 </style>

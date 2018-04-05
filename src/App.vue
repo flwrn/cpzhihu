@@ -3,12 +3,12 @@
     <explore-header></explore-header>
     <div class="main">
       <div class="center clearfix">
-        <div class="col-l f-l">
+        <div v-bind:class="mainColClass">
           <editor-recommendation></editor-recommendation>
           <top-question-list></top-question-list>
-          <a class="more">更多</a>
+
         </div>
-        <div class="col-s f-r">
+        <div v-bind:class="sideColClass">
           <sign-up-zhihu></sign-up-zhihu>
           <download-zhihu-btn></download-zhihu-btn>
           <hot-tables></hot-tables>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import ExploreHeader from './components/ExploreHeader.vue';
 import SignUpZhihu from './components/SignUpZhihu.vue';
 import EditorRecommendation from './components/EditorRecommendation.vue';
@@ -44,23 +45,54 @@ export default {
     'hot-topics': HotTopics,
     'hot-favs': HotFavs,
     'app-footer': Footer
+  },
+  data() {
+    return {
+      mainColClass: {
+        'col-l': true,
+        'f-l': true
+      },
+      sideColClass: {
+        'col-s': true,
+        'f-r': true
+      }
+    }
+  },
+  methods: {
+    resizeWidth: function() {
+      if (screen.availWidth <= 1000) {
+        this.mainColClass['col-l'] = false;
+        this.mainColClass['f-l'] = false;
+        this.sideColClass['col-s'] = false;
+        this.sideColClass['f-r'] = false;
+      } else {
+        this.mainColClass['col-l'] = true;
+        this.mainColClass['f-l'] = true;
+        this.sideColClass['col-s'] = true;
+        this.sideColClass['f-r'] = true;
+      }
+    },
+    showMoreQuestions() {
+      console.log(this);
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.onresize = () => {
+        this.resizeWidth();
+        console.log(screen.availWidth);
+      }
+      this.resizeWidth();
+    });
   }
 }
+
+
+
 </script>
 
 <style lang="scss">
   .main {
     margin: 80px 0;
-    .more {
-      background: #eee;
-      text-align: center;
-      height: 40px;
-      color: #999;
-      line-height: 40px;
-      border-radius: 2px;
-      border: 1px solid #ccc;
-      box-shadow: 0 1px 5px #ccc;
-      margin: 10px;
-    }
   }
 </style>

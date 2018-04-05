@@ -8,7 +8,7 @@
     </div>
     <div class="question-list">
       <ul>
-        <li class="clearfix" v-for="question in questionList" v-on:mouseenter="question.hover=true" v-on:mouseleave="question.hover=false">
+        <li class="clearfix" v-for="(question, index) in questionList" v-on:mouseenter="mouseenter(question)" v-on:mouseleave="mouseleave(question)">
           <a href="#" class="question"><h4>{{question.question}}</h4></a>
           <a href="#" class="likes f-l">{{question.likes}}</a>
           <div class="author">
@@ -20,12 +20,12 @@
           <div class="btns clearfix">
             <ul class="clearfix f-l">
               <li class="f-l"><a href="#" class="follow-btn">关注问题</a></li>
-              <li class="f-l"><a href="#" class="comments">{{question.comments}}条评论</a></li>
+              <li class="f-l"><a v-on:click="showComments(question, index)" class="comments">{{question.comments}}条评论</a></li>
             </ul>
-            <ul class="clearfix f-l" v-if="!question.hover">
+            <ul class="clearfix f-l" v-if="!(question.hover || question.commentsShown)">
               <li class="f-l"><a href="#" class="ask-repost">申请转载</a></li>
             </ul>
-            <ul class="clearfix f-l" v-if="question.hover">
+            <ul class="clearfix f-l" v-if="(question.hover || question.commentsShown)">
               <li class="f-l"><a href="#" class="thank">感谢</a></li>
               <li class="f-l"><a href="#" class="share">分享</a></li>
               <li class="f-l"><a href="#" class="favorite">收藏</a></li>
@@ -34,89 +34,25 @@
               <li class="f-l"><a href="#" class="no-repost">禁止转载</a></li>
             </ul>
           </div>
+          <comments style="display:none;"></comments>
         </li>
       </ul>
     </div>
+    <a class="more" v-on:click="showMoreQuestions">更多</a>
   </div>
 </template>
 
 <script>
+import Comments from './Comments.vue';
+
 export default {
+  components: {
+    'comments': Comments
+  },
   data() {
     return {
+      comments: [],
       questionList: [
-        {
-          question: '一个问题',
-          likes: 666,
-          author: {
-            name: '作者名字',
-            field: '，某某问题的优秀回答者',
-            info: '信息介绍'
-          },
-          answer: '回答的具体内容...',
-          comments: 233,
-          hover: false
-        },
-        {
-          question: '一个问题',
-          likes: 666,
-          author: {
-            name: '作者名字',
-            field: '，某某问题的优秀回答者',
-            info: '信息介绍'
-          },
-          answer: '回答的具体内容...',
-          comments: 233,
-          hover: false
-        },
-        {
-          question: '一个问题',
-          likes: 666,
-          author: {
-            name: '作者名字',
-            field: '，某某问题的优秀回答者',
-            info: '信息介绍'
-          },
-          answer: '回答的具体内容...',
-          comments: 233,
-          hover: false
-        },
-        {
-          question: '一个问题',
-          likes: 666,
-          author: {
-            name: '作者名字',
-            field: '，某某问题的优秀回答者',
-            info: '信息介绍'
-          },
-          answer: '回答的具体内容...',
-          comments: 233,
-          hover: false
-        },
-        {
-          question: '一个问题',
-          likes: 666,
-          author: {
-            name: '作者名字',
-            field: '，某某问题的优秀回答者',
-            info: '信息介绍'
-          },
-          answer: '回答的具体内容...',
-          comments: 233,
-          hover: false
-        },
-        {
-          question: '一个问题',
-          likes: 666,
-          author: {
-            name: '作者名字',
-            field: '，某某问题的优秀回答者',
-            info: '信息介绍'
-          },
-          answer: '回答的具体内容...',
-          comments: 233,
-          hover: false
-        },
         {
           question: '一个问题',
           likes: 666,
@@ -171,7 +107,56 @@ export default {
   methods: {
     showList() {
       console.log(this.list);
+    },
+    initQuestionList() {
+      this.questionList.forEach((question) => {
+        question.hover = false;
+        question.commentsShown = false;
+      });
+      this.comments = document.querySelectorAll('.comments-wrapper');
+    },
+    mouseenter(question) {
+      question.hover = true;
+    },
+    mouseleave(question) {
+      question.hover = false;
+    },
+    showComments(question, index) {
+      if (question.commentsShown) {
+        this.comments[index].style.display = 'none';
+        question.commentsShown = false;
+      } else {
+        this.comments[index].style.display = 'block';
+        question.commentsShown = true;
+      }
+    },
+    showMoreQuestions() {
+      for (let i=0; i<4; i++) {
+        this.questionList.push({
+          question: '一个问题',
+          likes: 666,
+          author: {
+            name: '作者名字',
+            field: '，某某问题的优秀回答者',
+            info: '信息介绍'
+          },
+          answer: '回答的具体内容...',
+          comments: 233,
+          hover: false
+        });
+      }
+      this.initQuestionList();
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.initQuestionList();
+    });
+  },
+  updated() {
+    this.$nextTick(() => {
+      this.initQuestionList();
+    });
   },
   computed: {
     list() {
@@ -183,7 +168,9 @@ export default {
 
 <style lang="scss" scoped>
   .top-question {
-    margin: 10px 0;
+    margin: 10px;
+    // width: 100%;
+    // box-sizing: border-box;
     .tabs {
       margin: 10px 0;
       a {
@@ -229,6 +216,17 @@ export default {
           color: #666;
         }
       }
+    }
+    .more {
+      background: #eee;
+      text-align: center;
+      height: 40px;
+      color: #999;
+      line-height: 40px;
+      border-radius: 2px;
+      border: 1px solid #ccc;
+      box-shadow: 0 1px 5px #ccc;
+      margin: 10px;
     }
   }
 </style>

@@ -44,6 +44,8 @@ export default {
   .hot-tables {
     border-bottom: 1px solid #ccc;
     margin: 10px;
+    // width: 100%;
+    // box-sizing: border-box;
     .header {
       a {
         color: #999;

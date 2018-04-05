@@ -64,7 +64,9 @@ export default {
 
 <style lang="scss" scoped>
   .editor-recommendation {
-    // margin: 10px;
+    margin: 10px;
+    // width: 100%;
+    // box-sizing: border-box;
     .header {
       a {
         color: #666;

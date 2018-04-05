@@ -21,10 +21,18 @@ export default {
 
 <style lang="scss" scoped>
   .footer {
+    margin: 10px;
+    // width: 100%;
+    // box-sizing: border-box;
     a, p {
       color: #999;
       font-size: 14px;
       margin: 5px;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .footer > * {
+      display: inline-block;
     }
   }
 </style>

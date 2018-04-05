@@ -55,6 +55,8 @@ export default {
 <style lang="scss" scoped>
   .hot-favs {
     margin: 10px;
+    // width: 100%;
+    // box-sizing: border-box;
     border-bottom: 1px solid #ccc;
     .header {
       a {
